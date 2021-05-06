@@ -30,11 +30,15 @@ class ViewController: UIViewController {
              "9"]
     var i=0
     var btn12:[UIButton] = [UIButton]()
+    var btnshuffled:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         btn12=[btn1,btn2,btn3,
                btn4,btn5,btn6,
                btn7,btn8,btn9]
+        
+        start()
     }
     @IBAction func Click(_ sender: UIButton) {
         if(sender.currentTitle == btn[i]){
@@ -49,10 +53,16 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func Clear(_ sender: UIButton) {
+        start()
+    }
+    func start(){
         i=0
+        btnshuffled = btn.shuffled()
         Lbl.text = "Press 1-9"
         for btn in btn12{
             btn.isEnabled = true
+            btn.setTitle(btnshuffled.last, for: .normal)
+            btnshuffled.removeLast()
         }
     }
     
