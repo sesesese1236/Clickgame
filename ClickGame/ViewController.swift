@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var btn7: UIButton!
     @IBOutlet weak var btn8: UIButton!
     @IBOutlet weak var btn9: UIButton!
+    var startDate:Date? = nil
+    var endDate:Date? = nil
     let btn=["1",
              "2",
              "3",
@@ -29,6 +31,7 @@ class ViewController: UIViewController {
              "8",
              "9"]
     var i=0
+    var scoreTime = 0.0
     var btn12:[UIButton] = [UIButton]()
     var btnshuffled:[String] = []
     override func viewDidLoad() {
@@ -41,15 +44,21 @@ class ViewController: UIViewController {
         start()
     }
     @IBAction func Click(_ sender: UIButton) {
+        if(i == 0){
+            startDate = Date();
+        }
         if(sender.currentTitle == btn[i]){
             i+=1
             sender.isEnabled = false
         }else{
             Lbl.text="Wrong"
         }
+        if i == 9{
+            endDate = Date();
+            let playTime = endDate!.timeIntervalSince(startDate!);
+        }
         if(i > 8){
-            Lbl.text = "Game Clear"
-            i=0
+            Lbl.text = "Game Clear/time:
         }
     }
     @IBAction func Clear(_ sender: UIButton) {
