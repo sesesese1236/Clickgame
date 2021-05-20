@@ -13,9 +13,12 @@
 		47B6A9762631373800873087 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B6A9742631373800873087 /* Main.storyboard */; };
 		47B6A9782631374600873087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47B6A9772631374600873087 /* Assets.xcassets */; };
 		47B6A97B2631374600873087 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B6A9792631374600873087 /* LaunchScreen.storyboard */; };
+		F43983633431AA0651F66E34 /* Pods_ClickGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 477756CE7C48ED1026D51877 /* Pods_ClickGame.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EE83F6A0FC15269D9CA063C /* Pods-ClickGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClickGame.release.xcconfig"; path = "Target Support Files/Pods-ClickGame/Pods-ClickGame.release.xcconfig"; sourceTree = "<group>"; };
+		477756CE7C48ED1026D51877 /* Pods_ClickGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClickGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B6A96B2631373800873087 /* ClickGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClickGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B6A96E2631373800873087 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47B6A9702631373800873087 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		47B6A9772631374600873087 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47B6A97A2631374600873087 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47B6A97C2631374600873087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBFA3862514824B18908FD15 /* Pods-ClickGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClickGame.debug.xcconfig"; path = "Target Support Files/Pods-ClickGame/Pods-ClickGame.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F43983633431AA0651F66E34 /* Pods_ClickGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01A8894F6873F92E98743DBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				477756CE7C48ED1026D51877 /* Pods_ClickGame.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		47B6A9622631373700873087 = {
 			isa = PBXGroup;
 			children = (
 				47B6A96D2631373800873087 /* ClickGame */,
 				47B6A96C2631373800873087 /* Products */,
+				6DABBD1080695B73BE71A754 /* Pods */,
+				01A8894F6873F92E98743DBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = ClickGame;
 			sourceTree = "<group>";
 		};
+		6DABBD1080695B73BE71A754 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EBFA3862514824B18908FD15 /* Pods-ClickGame.debug.xcconfig */,
+				1EE83F6A0FC15269D9CA063C /* Pods-ClickGame.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47B6A97F2631374600873087 /* Build configuration list for PBXNativeTarget "ClickGame" */;
 			buildPhases = (
+				B4F92E11B0B144A1FF849732 /* [CP] Check Pods Manifest.lock */,
 				47B6A9672631373800873087 /* Sources */,
 				47B6A9682631373800873087 /* Frameworks */,
 				47B6A9692631373800873087 /* Resources */,
+				9C469F50B134C47CD0FA2A3C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9C469F50B134C47CD0FA2A3C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClickGame/Pods-ClickGame-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClickGame/Pods-ClickGame-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClickGame/Pods-ClickGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4F92E11B0B144A1FF849732 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClickGame-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		47B6A9672631373800873087 /* Sources */ = {
@@ -283,6 +352,7 @@
 		};
 		47B6A9802631374600873087 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBFA3862514824B18908FD15 /* Pods-ClickGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -301,6 +371,7 @@
 		};
 		47B6A9812631374600873087 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE83F6A0FC15269D9CA063C /* Pods-ClickGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

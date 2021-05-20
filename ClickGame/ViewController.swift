@@ -55,10 +55,9 @@ class ViewController: UIViewController {
         }
         if i == 9{
             endDate = Date();
-            let playTime = endDate!.timeIntervalSince(startDate!);
-        }
-        if(i > 8){
-            Lbl.text = "Game Clear/time:
+            let playTime = round(endDate!.timeIntervalSince(startDate!)*1000)/1000;
+            scoreTime = playTime
+            Lbl.text = "Game Clear!!! / time:\(playTime)s"
         }
     }
     @IBAction func Clear(_ sender: UIButton) {
