@@ -16,7 +16,17 @@ class ClearTime: Object{
     override static func primaryKey() -> String? {
         return "id"
     }
-}
+    func show(){
+        if time != nil{
+            print(id)
+            print(time!)
+            print(scoreTime)
+            print()
+        }
+        else{
+            print("data not saved properly")
+        }
+    }}
 class ViewController: UIViewController {
 
     @IBOutlet weak var Lbl: UILabel!
@@ -29,6 +39,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btn7: UIButton!
     @IBOutlet weak var btn8: UIButton!
     @IBOutlet weak var btn9: UIButton!
+    @IBOutlet weak var textTargetID: UITextField!
     var startDate:Date? = nil
     var endDate:Date? = nil
     let btn=["1",
@@ -101,14 +112,7 @@ class ViewController: UIViewController {
         
         print("---loading saved data---")
         for cleartime in cleartimelist{
-            if cleartime.time != nil{
-                print(cleartime.id)
-                print(cleartime.time!)
-                print(cleartime.scoreTime)
-                print()
-            }else{
-                print("data not saved properly")
-            }
+            cleartime.show()
         }
     }
     @IBAction func Search(_ sender: UIButton) {
@@ -118,15 +122,7 @@ class ViewController: UIViewController {
         let fastTimeScoreList:Results<ClearTime> =
             realm.objects(ClearTime.self).filter("scoreTime > 0.0 AND  scoreTime < 5")
         for cleartime in fastTimeScoreList {
-            if cleartime.time != nil {
-                print(cleartime.id)
-                print(cleartime.time!)
-                print(cleartime.scoreTime)
-                print()
-            }
-            else{
-                print("data not saved properly")
-            }
+            cleartime.show()
         }
     }
     @IBAction func Delete(_ sender: UIButton) {
@@ -145,16 +141,37 @@ class ViewController: UIViewController {
         let cleartimelist:Results<ClearTime> = realm.objects(ClearTime.self)
         
         for cleartime in cleartimelist {
-            if cleartime.time != nil{
-                print(cleartime.id)
-                print(cleartime.time!)
-                print(cleartime.scoreTime)
-                print()
-            }
-            else{
-                print("data not saved properly")
-            }
+            cleartime.show()
         }
+    }
+    @IBAction func Update(_ sender: UIButton) {
+        let realm = try! Realm()
+        
+        print("----Update Data ID----")
+        
+        let query = "id='\(textTargetID.text!)'"
+        print("Taken Critea")
+        print(query)
+        
+        let targetScoreList:Results<ClearTime> =
+            realm.objects(ClearTime.self).filter(query)
+        
+        let cleartime:ClearTime = targetScoreList.first!
+        
+        try! realm.write {
+            cleartime.time = Lbl.text
+            cleartime.scoreTime = scoreTime
+        }
+        
+        print("----Update----")
+        
+        let cleartimelist:Results<ClearTime> =
+            realm.objects(ClearTime.self)
+        
+        for cleartime in cleartimelist{
+            cleartime.show()
+        }
+        
     }
     func start(){
         i=0
@@ -169,4 +186,3 @@ class ViewController: UIViewController {
     
 
 }
-
