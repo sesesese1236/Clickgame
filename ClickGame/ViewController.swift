@@ -52,9 +52,12 @@ class ViewController: UIViewController {
              "8",
              "9"]
     var i=0
+    var j=0
     var scoreTime = 0.0
     var btn12:[UIButton] = [UIButton]()
     var btnshuffled:[String] = []
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,20 +77,41 @@ class ViewController: UIViewController {
         start()
     }
     @IBAction func Click(_ sender: UIButton) {
-        if(i == 0){
+        
+        if(j == 0){
+            j+=1
             startDate = Date();
         }
         if(sender.currentTitle == btn[i]){
             i+=1
             sender.isEnabled = false
         }else{
+            start()
             Lbl.text="Wrong"
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            
+            let animation = CABasicAnimation(keyPath: "position")
+            
+            animation.duration = 0.07
+            
+            animation.repeatCount = 4
+            
+            animation.autoreverses = true
+            for btn in btn12{
+                animation.fromValue = NSValue(cgPoint: CGPoint(x:btn.center.x - 10, y: btn.center.y))
+                
+                animation.toValue = NSValue(cgPoint: CGPoint(x:btn.center.x + 10, y: btn.center.y))
+                
+                btn.layer.add(animation,forKey:"position")
+            }
+            
         }
         if i == 9{
             endDate = Date();
             let playTime = round(endDate!.timeIntervalSince(startDate!)*1000)/1000;
             scoreTime = playTime
             Lbl.text = "Game Clear!!! / time:\(playTime)s"
+            j=0
         }
     }
     @IBAction func Clear(_ sender: UIButton) {
