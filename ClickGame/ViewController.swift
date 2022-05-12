@@ -12,6 +12,7 @@ class ClearTime: Object{
     @objc dynamic var id: String = NSUUID().uuidString
     @objc dynamic var time:String? = nil
     @objc dynamic var scoreTime:Double = 0.0
+    @objc dynamic var Level:Int = 1
     
     override static func primaryKey() -> String? {
         return "id"
@@ -21,6 +22,7 @@ class ClearTime: Object{
             print(id)
             print(time!)
             print(scoreTime)
+            print(Level)
             print()
         }
         else{
@@ -40,9 +42,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var btn8: UIButton!
     @IBOutlet weak var btn9: UIButton!
     @IBOutlet weak var textTargetID: UITextField!
+    @IBOutlet weak var levelControlSegment: UISegmentedControl!
     var startDate:Date? = nil
     var endDate:Date? = nil
-    let btn=["1",
+    var btnNumber=["1",
              "2",
              "3",
              "4",
@@ -54,26 +57,33 @@ class ViewController: UIViewController {
     var i=0
     var j=0
     var scoreTime = 0.0
-    var btn12:[UIButton] = [UIButton]()
-    var btnshuffled:[String] = []
+    var btnList:[UIButton] = [UIButton]()
+    var btnNumbershuffled:[String] = []
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let config = Realm.Configuration(schemaVersion: 4,
+        let config = Realm.Configuration(schemaVersion: 5,
                                          migrationBlock: { migration, oldSchemaVersion in
                                             if oldSchemaVersion < 4 {
                                                 migration.enumerateObjects(ofType: ClearTime.className()) { oldObject, newObject in newObject!["id"] = NSUUID().uuidString
                                                 }
                                             }
+                                            if oldSchemaVersion < 5{
+                                                migration.enumerateObjects(ofType: ClearTime.className()) { oldObject, newObject in newObject!["Level"] = 1
+                                                }
+                                            }
                                          })
         Realm.Configuration.defaultConfiguration = config
         
-        btn12=[btn1,btn2,btn3,
+        btnList=[btn1,btn2,btn3,
                btn4,btn5,btn6,
                btn7,btn8,btn9]
         
+        start()
+    }
+    @IBAction func SegmentChange(_ sender: UISegmentedControl) {
         start()
     }
     @IBAction func Click(_ sender: UIButton) {
@@ -82,12 +92,12 @@ class ViewController: UIViewController {
             j+=1
             startDate = Date();
         }
-        if(sender.currentTitle == btn[i]){
+        if(sender.currentTitle == btnNumber[i]){
             i+=1
             sender.isEnabled = false
         }else{
             start()
-            Lbl.text="Wrong"
+            Lbl.text="Wrong "+Lbl.text!
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             
             let animation = CABasicAnimation(keyPath: "position")
@@ -97,7 +107,7 @@ class ViewController: UIViewController {
             animation.repeatCount = 4
             
             animation.autoreverses = true
-            for btn in btn12{
+            for btn in btnList{
                 animation.fromValue = NSValue(cgPoint: CGPoint(x:btn.center.x - 10, y: btn.center.y))
                 
                 animation.toValue = NSValue(cgPoint: CGPoint(x:btn.center.x + 10, y: btn.center.y))
@@ -112,17 +122,18 @@ class ViewController: UIViewController {
             scoreTime = playTime
             Lbl.text = "Game Clear!!! / time:\(playTime)s"
             j=0
+            Save()
         }
     }
     @IBAction func Clear(_ sender: UIButton) {
         start()
     }
-    @IBAction func Save(_ sender: UIButton) {
+    func Save(){
         let cleartime:ClearTime = ClearTime()
         
         cleartime.time = String(scoreTime)
         cleartime.scoreTime = scoreTime
-        
+        cleartime.Level = levelControlSegment.selectedSegmentIndex + 1
         let realm = try! Realm()
         
         print("---Saving---")
@@ -139,72 +150,57 @@ class ViewController: UIViewController {
             cleartime.show()
         }
     }
-    @IBAction func Search(_ sender: UIButton) {
-        let realm = try! Realm()
-        print("---loading saved data---")
-        
-        let fastTimeScoreList:Results<ClearTime> =
-            realm.objects(ClearTime.self).filter("scoreTime > 0.0 AND  scoreTime < 5")
-        for cleartime in fastTimeScoreList {
-            cleartime.show()
-        }
-    }
-    @IBAction func Delete(_ sender: UIButton) {
-        let realm = try! Realm()
-        
-        print("---loading saved data---")
-        
-        let zeroTimeScoreList:Results<ClearTime> =
-            realm.objects(ClearTime.self).filter("scoreTime = 0.0")
-        
-        try! realm.write {
-            realm.delete(zeroTimeScoreList)
-        }
-        print("---show delete result---")
-        
-        let cleartimelist:Results<ClearTime> = realm.objects(ClearTime.self)
-        
-        for cleartime in cleartimelist {
-            cleartime.show()
-        }
-    }
-    @IBAction func Update(_ sender: UIButton) {
-        let realm = try! Realm()
-        
-        print("----Update Data ID----")
-        
-        let query = "id='\(textTargetID.text!)'"
-        print("Taken Critea")
-        print(query)
-        
-        let targetScoreList:Results<ClearTime> =
-            realm.objects(ClearTime.self).filter(query)
-        
-        let cleartime:ClearTime = targetScoreList.first!
-        
-        try! realm.write {
-            cleartime.time = Lbl.text
-            cleartime.scoreTime = scoreTime
-        }
-        
-        print("----Update----")
-        
-        let cleartimelist:Results<ClearTime> =
-            realm.objects(ClearTime.self)
-        
-        for cleartime in cleartimelist{
-            cleartime.show()
-        }
-        
-    }
     func start(){
         i=0
-        btnshuffled = btn.shuffled()
-        Lbl.text = "Press 1-9"
-        for btn in btn12{
-            btn.isEnabled = true
-            btn.setTitle(btnshuffled.last, for: .normal)
-            btnshuffled.removeLast()
+        btnNumbershuffled = btnNumber.shuffled()
+        btnNumber=["1",
+                 "2",
+                 "3",
+                 "4",
+                 "5",
+                 "6",
+                 "7",
+                 "8",
+                 "9"]
+        if(levelControlSegment.selectedSegmentIndex == 0){
+            Lbl.text = "Press 1-9"
+            for btn in btnList{
+                btn.isEnabled = true
+                btn.setTitle(btnNumbershuffled.last, for: .normal)
+                btnNumbershuffled.removeLast()
+            }
+        }
+        if(levelControlSegment.selectedSegmentIndex == 1){
+            Lbl.text = "Press "
+            btnNumber = btnNumbershuffled
+            for num in btnNumbershuffled{
+                if(num == btnNumbershuffled[0]){
+                    Lbl.text = Lbl.text!+num
+                }else{
+                    Lbl.text = Lbl.text!+","+num
+                }
+            }
+            for btn in btnList{
+                btn.isEnabled = true
+                btn.setTitle(btnNumbershuffled.last, for: .normal)
+                btnNumbershuffled.removeLast()
+            }
+//            while(i != 9){
+//                btnshuffled = btn.shuffled()
+//                for btns in btn12{
+//                    let random = Int.random(in: 1...9)
+//                    if(btns.currentTitle == String(random)){
+//                        UIView.animate(withDuration: 0.5, animations: {
+//                            btns.alpha = 0
+//                        })
+//                        UIView.animate(withDuration: 0.5, animations: {
+//                            btns.alpha = 1
+//                        })
+//                    }
+//                }
+//            }
+//            btn
+            
         }
     }
     

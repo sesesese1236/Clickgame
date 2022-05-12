@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470B7F6F282CD11E003BF974 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470B7F6E282CD11E003BF974 /* RankingViewController.swift */; };
 		47B6A96F2631373800873087 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6A96E2631373800873087 /* AppDelegate.swift */; };
 		47B6A9712631373800873087 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6A9702631373800873087 /* SceneDelegate.swift */; };
 		47B6A9732631373800873087 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6A9722631373800873087 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		1EE83F6A0FC15269D9CA063C /* Pods-ClickGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClickGame.release.xcconfig"; path = "Target Support Files/Pods-ClickGame/Pods-ClickGame.release.xcconfig"; sourceTree = "<group>"; };
+		470B7F6E282CD11E003BF974 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		477756CE7C48ED1026D51877 /* Pods_ClickGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClickGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B6A96B2631373800873087 /* ClickGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClickGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B6A96E2631373800873087 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				47B6A9702631373800873087 /* SceneDelegate.swift */,
 				47B6A9722631373800873087 /* ViewController.swift */,
 				47B6A9742631373800873087 /* Main.storyboard */,
+				470B7F6E282CD11E003BF974 /* RankingViewController.swift */,
 				47B6A9772631374600873087 /* Assets.xcassets */,
 				47B6A9792631374600873087 /* LaunchScreen.storyboard */,
 				47B6A97C2631374600873087 /* Info.plist */,
@@ -212,6 +215,7 @@
 				47B6A9732631373800873087 /* ViewController.swift in Sources */,
 				47B6A96F2631373800873087 /* AppDelegate.swift in Sources */,
 				47B6A9712631373800873087 /* SceneDelegate.swift in Sources */,
+				470B7F6F282CD11E003BF974 /* RankingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
