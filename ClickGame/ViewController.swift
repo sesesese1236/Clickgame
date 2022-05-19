@@ -150,8 +150,13 @@ class ViewController: UIViewController {
             cleartime.show()
         }
     }
+    @IBAction func rankingOnClick(_ sender: UIButton) {
+        i=0
+        j=0
+    }
     func start(){
         i=0
+        j=0
         btnNumbershuffled = btnNumber.shuffled()
         btnNumber=["1",
                  "2",

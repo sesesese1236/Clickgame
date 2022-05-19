@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ClickGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewController" id="BYZ-38-t0r" customClass="ViewController" customModule="ClickGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,6 +177,7 @@
                                 </state>
                                 <connections>
                                     <action selector="Clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yCE-3H-EYQ"/>
+                                    <action selector="rankingOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kqo-Ah-yDr"/>
                                     <segue destination="jnd-VF-j86" kind="show" id="KUD-a8-OsK"/>
                                 </connections>
                             </button>
@@ -217,6 +218,7 @@
                             <constraint firstItem="8CL-Co-aed" firstAttribute="centerY" secondItem="U7s-qW-1RQ" secondAttribute="centerY" id="vXK-Ef-4fR"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="5be-Ja-91E"/>
                     <connections>
                         <outlet property="Lbl" destination="hPk-Km-Rxy" id="ukX-qC-1fs"/>
                         <outlet property="btn1" destination="U7s-qW-1RQ" id="PRq-hh-2LW"/>
@@ -249,6 +251,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Delete">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="Delete:" destination="jnd-VF-j86" eventType="touchUpInside" id="uBH-YX-xbf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2H-Mu-5lq">
                                 <rect key="frame" x="30" y="715" width="354" height="51"/>
@@ -266,16 +271,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="s1k-fA-1B7">
-                                <rect key="frame" x="87" y="212" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="s1k-fA-1B7">
+                                <rect key="frame" x="20" y="64" width="374" height="582.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="E4Z-6G-B5l">
-                                        <rect key="frame" x="0.0" y="44.5" width="240" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E4Z-6G-B5l" id="ZFA-eU-kg0">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -287,7 +291,11 @@
                         <constraints>
                             <constraint firstItem="h45-2t-kTG" firstAttribute="top" secondItem="c2H-Mu-5lq" secondAttribute="bottom" constant="15" id="36n-9Z-Jny"/>
                             <constraint firstItem="t7i-t0-Iv0" firstAttribute="trailing" secondItem="h45-2t-kTG" secondAttribute="trailing" constant="30" id="3qk-d3-5Bf"/>
+                            <constraint firstItem="bE7-37-jTy" firstAttribute="top" secondItem="s1k-fA-1B7" secondAttribute="bottom" constant="20" id="D8M-Vb-1Th"/>
+                            <constraint firstItem="s1k-fA-1B7" firstAttribute="leading" secondItem="t7i-t0-Iv0" secondAttribute="leading" constant="20" id="KDg-fo-9JZ"/>
                             <constraint firstItem="t7i-t0-Iv0" firstAttribute="trailing" secondItem="c2H-Mu-5lq" secondAttribute="trailing" constant="30" id="Lkz-aQ-fJ5"/>
+                            <constraint firstItem="s1k-fA-1B7" firstAttribute="top" secondItem="t7i-t0-Iv0" secondAttribute="top" constant="20" id="UVW-E7-xym"/>
+                            <constraint firstItem="t7i-t0-Iv0" firstAttribute="trailing" secondItem="s1k-fA-1B7" secondAttribute="trailing" constant="20" id="WoA-BQ-Xm3"/>
                             <constraint firstItem="c2H-Mu-5lq" firstAttribute="top" secondItem="bE7-37-jTy" secondAttribute="bottom" constant="15" id="efG-CT-zwl"/>
                             <constraint firstItem="c2H-Mu-5lq" firstAttribute="leading" secondItem="t7i-t0-Iv0" secondAttribute="leading" constant="30" id="gge-qw-PAD"/>
                             <constraint firstItem="bE7-37-jTy" firstAttribute="leading" secondItem="t7i-t0-Iv0" secondAttribute="leading" constant="30" id="hCj-SB-WwG"/>
@@ -300,6 +308,7 @@
                     <connections>
                         <outlet property="btnBack" destination="c2H-Mu-5lq" id="K2U-yQ-ECJ"/>
                         <outlet property="btnDelete" destination="h45-2t-kTG" id="akw-m4-cpl"/>
+                        <outlet property="idLabel" destination="bE7-37-jTy" id="ySk-PO-phE"/>
                         <outlet property="rankingView" destination="s1k-fA-1B7" id="dxh-A3-WVG"/>
                     </connections>
                 </viewController>
