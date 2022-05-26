@@ -44,6 +44,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
             rankingList = rankingList!.sorted(byKeyPath: "scoreTime")
             
             tableView.reloadData()
+            idLabel.text = "Ranking Level:\(selectedLevel)"
         }
         else if(now == 1){
 //            Name = nameList![indexPath.row].Name
@@ -51,12 +52,12 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            indexS = indexPath.row
             btnDelete.isEnabled = true
             index = indexPath.row
-            func rowDelete(){
-                rankingView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
-                
-                rankingView.reloadData()
-            }
-            idLabel.text = "id:"+rankingList![indexPath.row].id
+//            func rowDelete(){
+//                rankingView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
+//                
+//                rankingView.reloadData()
+//            }
+//            idLabel.text = "id:"+rankingList![indexPath.row].id
         }
     }
     var rankingList:Results<ClearTime>?=nil
@@ -78,6 +79,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
             levelList.append(String(temp))
         }
         let distinctLevel = Set(levelList)
+        idLabel.text = "Ranking"
         levelDistinctList = Array(distinctLevel)
         levelDistinctList.sort()
         btnDelete.isEnabled = false
@@ -85,7 +87,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func Back(_ sender: UIButton) {
         if(now == 1){
             now = 0
-            
+            idLabel.text = "Ranking"
             rankingView.reloadData()
             btnDelete.isEnabled = false
         }else if(now == 0){
